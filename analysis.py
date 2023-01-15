@@ -72,27 +72,32 @@ plt.bar(
 plt.show()
 
 # Total runs scored with different countries 
-run_with_countries=df.groupby("Runs")["Opposition"].sum()
-run_with_countries_values=run_with_countries.values
-run_with_countries_labels=run_with_countries.index
-
+runs_with_countries = df.groupby("Opposition")["Runs"].sum()
+runs_with_countries_values = runs_with_countries.values
+runs_with_countries_labels = runs_with_countries.index
 plt.bar(
-    run_with_countries_labels,
-    run_with_countries_values,
-    color="blue",
+    runs_with_countries_labels, 
+    runs_with_countries_values, 
+    color="blue", 
     width=0.3
 )
+plt.show()
 
 
-# Number of centuried scroed by himself in 1st
-centuries=df.query("Runs>=100")
+# Number of centuried scroed by himself in 1st and 2nd innings
+centuries = df.query("Runs >= 100")
+
 print(centuries)
 
-innings=centuries["Inns"].value_counts()
-# tons=centuries["Runs"]
+innings = centuries["Inns"].value_counts()
 
-plt.bar(innings.values,labels=innings.index)
+plt.pie(innings.values, labels=innings.index)
 plt.show()
+# tons=centuries["Runs"]
+tons = centuries["Runs"]
+plt.bar(innings, tons, width=0.3)
+plt.show()
+
 # Calculate the dismisssals of kohli
 
 #Against which team he has scored the most centuries 
